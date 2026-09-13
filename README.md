@@ -5,8 +5,9 @@ Also you HAVE TO use pairs of capcitors (*100 nF + 2-40 uF*) for the filtering o
 Don't forget to use pull-up resistor for `PB5` aka `RESET` pin.  
 
 Default pins on **ATTiny 13A** for Motorola 68000 control:  
- - Motorola 68000 RESET and HALT pins are both connected to `PB0`  
- - Motorola 68000 CLOCK signal is shared with `PB1`  
+ - Motorola 68000 RESET pin is connected to `PB0`
+ - Motorola 68000 HALT  pin is connected to `PB2`
+ - WTD signal from CPU (whatever it is) is connected to `PB1`  
  - `PB4` act as external reset source i.e. push button  
 
 This watchdog controller is designed to work with **9.6 MHz internal oscillator _divided by /8_** of **ATTiny 13A** aka `1.2 MHz`.  
@@ -24,6 +25,9 @@ make debug      # with debug symbols for GDB
 
 # To flash uC
 make flash
+
+# To run avr-sim
+make sim
 ```
 
 ### Arch
@@ -39,4 +43,7 @@ make debug      # with debug symbols for GDB
 
 # To flash uC
 make flash
+
+# To run avr-sim
+make sim
 ```
