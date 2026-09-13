@@ -1,11 +1,12 @@
 MMCU = attiny13a
-CFALGS = -nostdlib -Wl,-e,RESET
+FCPU=1200000
+CFLAGS = -nostdlib -Wl,-e,RESET
 CFLAGS_DEBUG = -g3 -Wa,--gstabs
 CFLAGS_RELEASE = -s
 OBJ_FORMAT = ihex
 SOURCE_FILE = main.s
 ELF_FILE = main.elf
-HEX_FIE = main.hex
+HEX_FILE = main.hex
 PROGRAMMER = avrisp
 PROGRAMMER_PORT = /dev/ttyUSB0
 PROGRAMMER_BAUD = 19200
@@ -22,4 +23,7 @@ release:
 	avr-objcopy -O $(OBJ_FORMAT) $(ELF_FILE) $(HEX_FILE)
 
 flash:
-	avrdude -p $(PROGRAMMER_MMCU) -c $(PROGRAMMER) -P $(PROGRAMMER_PORT) -b $(PROGRAMMER_BAUD) -U flash:w:$(HEX_FIE):i
+	avrdude -p $(PROGRAMMER_MMCU) -c $(PROGRAMMER) -P $(PROGRAMMER_PORT) -b $(PROGRAMMER_BAUD) -U flash:w:$(HEX_FILE):i
+
+sim: debug
+	simavr -g --freq $(FCPU) --mcu $(MMCU) --ff $(HEX_FILE)
