@@ -1,0 +1,32 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "simavr",
+      "type": "cppdbg",
+      "request": "launch",
+      "program": "${workspaceFolder}/main.elf",
+      "cwd": "${workspaceFolder}",
+      "MIMode": "gdb",
+      "miDebuggerPath": "/usr/bin/avr-gdb",
+      "miDebuggerServerAddress": "localhost:1234",
+      "stopAtEntry": true,
+      "setupCommands": [
+        {"text": "set $RAMEND = (unsigned char *)0x80009F"},
+        {"text": "set $SPL    = (unsigned char *)0x80005D"},
+        {"text": "set $PORTB  = (unsigned char *)0x800038"},
+        {"text": "set $DDRB   = (unsigned char *)0x800037"},
+        {"text": "set $PINB   = (unsigned char *)0x800036"},
+        {"text": "set $GTCCR  = (unsigned char *)0x800048"},
+        {"text": "set $TIMSK0 = (unsigned char *)0x800059"},
+        {"text": "set $TCCR0A = (unsigned char *)0x80004F"},
+        {"text": "set $TCCR0B = (unsigned char *)0x800053"},
+        {"text": "set $OCR0A  = (unsigned char *)0x800056"},
+        {"text": "set $TCNT0  = (unsigned char *)0x800052"},
+        {"text": "set $GIMSK  = (unsigned char *)0x80005B"},
+        {"text": "set $MCUCR  = (unsigned char *)0x800055"},
+        {"text": "set $PCMSK  = (unsigned char *)0x800035"}
+      ]
+    }
+  ]
+}
